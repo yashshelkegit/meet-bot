@@ -41,13 +41,18 @@ class SpeechToText:
         return audio_file_path
 
     def transcribe_audio(self, audio_file_path):
+        print(f"Attempting to transcribe: {audio_file_path}")
         with open(audio_file_path, 'rb') as audio_file:
-            transcript = self.client.audio.translations.create(
-                file=audio_file,
-                model=self.WHISPER_MODEL,
-            )
-            print("Transcribe: Done")
-            return transcript.text
+            try:
+                transcript = self.client.audio.transcriptions.create(
+                    file=audio_file,
+                    model=self.WHISPER_MODEL,
+                )
+                print("Transcription successful!")
+                return transcript.text
+            except Exception as e:
+                print("Transcription failed:", str(e))
+                return None
 
     def abstract_summary_extraction(self, transcription):
         response = self.client.chat.completions.create(
@@ -122,6 +127,15 @@ class SpeechToText:
         return response.choices[0].message.content
 
     def meeting_minutes(self, transcription):
+        if not transcription:
+            print("No transcription available to create meeting minutes.")
+            return {
+                'abstract_summary': "No transcription available.",
+                'key_points': "No transcription available.",
+                'action_items': "No transcription available.",
+                'sentiment': "No transcription available."
+            }
+        
         abstract_summary = self.abstract_summary_extraction(transcription)
         key_points = self.key_points_extraction(transcription)
         action_items = self.action_item_extraction(transcription)

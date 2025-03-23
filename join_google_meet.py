@@ -56,13 +56,13 @@ class JoinGoogleMeet:
         self.driver.get(meet_link)
         # turn off Microphone
         time.sleep(2)
-        self.driver.find_element(By.CSS_SELECTOR, 'div[jscontroller="t2mBxb"][data-anchor-id="hw0c9"]').click()
+        self.driver.find_element(By.CSS_SELECTOR, 'div[jscontroller="lCGUBd"][data-promo-anchor-id="aSBQL"]').click()
         self.driver.implicitly_wait(3000)
         print("Turn of mic activity: Done")
     
         # turn off camera
         time.sleep(1)
-        self.driver.find_element(By.CSS_SELECTOR, 'div[jscontroller="bwqwSd"][data-anchor-id="psRWwc"]').click()
+        self.driver.find_element(By.CSS_SELECTOR, 'div[jscontroller="lCGUBd"][data-promo-anchor-id="yhZxwc"]').click()
         self.driver.implicitly_wait(3000)
         print("Turn of camera activity: Done")
  
@@ -80,7 +80,7 @@ class JoinGoogleMeet:
         # Ask to Join meet
         time.sleep(5)
         self.driver.implicitly_wait(2000)
-        self.driver.find_element(By.CSS_SELECTOR, 'button[jsname="Qx7uuf"]').click()
+        self.driver.find_element(By.CSS_SELECTOR, 'button[jscontroller="O626Fe"][data-promo-anchor-id="w5gBed"]').click()
         print("Ask to join activity: Done")
         # checkIfJoined()
         # Ask to join and join now buttons have same xpaths
