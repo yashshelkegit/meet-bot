@@ -62,6 +62,10 @@ This project is a Python bot that automates the process of logging into Gmail, j
      OPENAI_API_KEY=your_openai_api_key
      GPT_MODEL=gpt-4
      WHISPER_MODEL=whisper-1
+   
+     #Config
+     RECORDING_DURATION=30
+     AUDIO_CHANNELS=1
      ```
 
 6. Run Script:
